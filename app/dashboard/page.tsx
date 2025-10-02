@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import Link from 'next/link';
 
 type Update = { id: string; month: string; title: string; summary_md: string; status: string };
 
@@ -37,14 +36,12 @@ export default function Dashboard() {
 
   return (
     <div className="stack">
-      <div className="card">
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div>
-            <strong>Coach Dashboard</strong>
-            <div className="small">{email}</div>
-          </div>
-          <button className="btn" onClick={signOut}>Sign out</button>
+      <div className="card" style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+        <div>
+          <strong>Coach Dashboard</strong>
+          <div className="small">{email}</div>
         </div>
+        <button className="btn" onClick={signOut}>Sign out</button>
       </div>
 
       {updates.length === 0 && <p>No published updates yet.</p>}
@@ -54,7 +51,6 @@ export default function Dashboard() {
           <div className="small">{new Date(u.month).toLocaleDateString(undefined, { month:'long', year:'numeric' })}</div>
           <h2 style={{margin:'8px 0'}}>{u.title || 'Monthly Update'}</h2>
           <p>{u.summary_md}</p>
-          <Link className="btn" href="#">Read more (coming soon)</Link>
         </div>
       ))}
     </div>
